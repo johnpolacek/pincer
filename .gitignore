@@ -17,3 +17,6 @@ bots.json
 
 # binary
 pincer
+
+# Mac OS
+.DS_Store

@@ -54,6 +54,13 @@ img {
     align-items: start;
 }
 
+@media (min-width: 1500px) {
+    .app-shell {
+        margin-left: 24px;
+        margin-right: auto;
+    }
+}
+
 .app-left-rail,
 .app-right-rail {
     min-width: 0;

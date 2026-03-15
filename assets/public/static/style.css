@@ -1,4 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=New+Rocker&display=swap");
+@font-face {
+	font-family: "New Rocker";
+	font-style: normal;
+	font-weight: 400;
+	font-display: block;
+	src: url("/static/fonts/new-rocker-latin.woff2") format("woff2");
+}
 
 /* Reset */
 *,
@@ -166,12 +172,15 @@ img {
 	display: grid;
 	grid-template-columns: 248px minmax(0, 620px) 320px;
 	gap: 24px;
-	align-items: start;
+	align-items: stretch;
+	height: 100vh;
+	overflow: hidden;
 }
 
 .app-left-rail,
 .app-right-rail {
 	min-width: 0;
+	min-height: 0;
 }
 
 .left-rail-sticky,
@@ -263,7 +272,35 @@ img {
 
 .app-center-column {
 	min-width: 0;
+	min-height: 0;
+	height: 100vh;
+	overflow-y: auto;
+	overscroll-behavior: contain;
 	padding-bottom: 24px;
+	scrollbar-gutter: stable;
+	scrollbar-width: thin;
+	scrollbar-color: var(--panel-border-strong) transparent;
+}
+
+.app-center-column::-webkit-scrollbar {
+	width: 8px;
+}
+
+.app-center-column::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.app-center-column::-webkit-scrollbar-thumb {
+	background: var(--panel-border-strong);
+	border-radius: 999px;
+	border: 2px solid transparent;
+	background-clip: padding-box;
+}
+
+.app-center-column::-webkit-scrollbar-thumb:hover {
+	background: var(--text-muted);
+	border: 2px solid transparent;
+	background-clip: padding-box;
 }
 
 .app-right-rail {
@@ -566,7 +603,7 @@ img {
 	background: var(--panel-bg);
 	border-left: 1px solid var(--panel-border);
 	border-right: 1px solid var(--panel-border);
-	min-height: calc(100vh - 72px);
+	min-height: 100vh;
 }
 
 /* Info Box */
@@ -1324,6 +1361,8 @@ li {
 	.app-shell {
 		display: block;
 		padding: 0;
+		height: auto;
+		overflow: visible;
 	}
 
 	.app-left-rail {
@@ -1406,6 +1445,12 @@ li {
 
 	.feed-container {
 		min-height: 0;
+	}
+
+	.app-center-column {
+		height: auto;
+		overflow: visible;
+		padding-bottom: 0;
 	}
 
 	.search-form {

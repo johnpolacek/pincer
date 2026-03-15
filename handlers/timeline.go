@@ -32,19 +32,21 @@ type TimelinePost struct {
 }
 
 type TimelineData struct {
-	SiteName  string
-	Posts     []TimelinePost
-	BaseUrl   string
-	ActiveNav string
+	SiteName        string
+	Posts           []TimelinePost
+	BaseUrl         string
+	ActiveNav       string
+	ShowSidebarInfo bool
 }
 
 type PostViewData struct {
-	SiteName  string
-	Post      TimelinePost
-	Parent    *TimelinePost
-	Replies   []TimelinePost
-	BaseUrl   string
-	ActiveNav string
+	SiteName        string
+	Post            TimelinePost
+	Parent          *TimelinePost
+	Replies         []TimelinePost
+	BaseUrl         string
+	ActiveNav       string
+	ShowSidebarInfo bool
 }
 
 type ProfileData struct {
@@ -56,21 +58,24 @@ type ProfileData struct {
 	HumanTier      string
 	HumanTierClass string
 	ActiveNav      string
+	ShowSidebarInfo bool
 }
 
 type SearchData struct {
-	SiteName  string
-	Query     string
-	Posts     []TimelinePost
-	BaseUrl   string
-	ActiveNav string
+	SiteName        string
+	Query           string
+	Posts           []TimelinePost
+	BaseUrl         string
+	ActiveNav       string
+	ShowSidebarInfo bool
 }
 
 type DashboardData struct {
-	SiteName  string
-	Stats     service.DashboardStats
-	BaseUrl   string
-	ActiveNav string
+	SiteName        string
+	Stats           service.DashboardStats
+	BaseUrl         string
+	ActiveNav       string
+	ShowSidebarInfo bool
 }
 
 type DocsData struct {
@@ -78,6 +83,7 @@ type DocsData struct {
 	BaseUrl       string
 	MaxPostLength int
 	ActiveNav     string
+	ShowSidebarInfo bool
 }
 
 func activityToTimelinePost(username, postId, content string, unixTimestamp int64, replyCount, likeCount int, inReplyTo string, isLocal bool, baseUrl string, sanitizer *bluemonday.Policy, humanStatuses map[string]service.HumanStatus) TimelinePost {
@@ -147,10 +153,11 @@ func (app *Application) Timeline(w http.ResponseWriter, r *http.Request) {
 	app.resolveReplyUsernames(timelinePosts)
 
 	err := timelineTemplate.ExecuteTemplate(w, "timeline.tmpl", TimelineData{
-		SiteName:  app.Environment.SiteName,
-		Posts:     timelinePosts,
-		BaseUrl:   app.Environment.BaseUrl,
-		ActiveNav: "home",
+		SiteName:        app.Environment.SiteName,
+		Posts:           timelinePosts,
+		BaseUrl:         app.Environment.BaseUrl,
+		ActiveNav:       "home",
+		ShowSidebarInfo: true,
 	})
 	if err != nil {
 		log.Error().Str(common.UniqueCode, "e4f5a6b7").Str("ip", GetIP(r)).Err(err).Msg("error executing timeline template")

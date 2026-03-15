@@ -1342,19 +1342,36 @@ li {
 		align-items: center;
 		justify-content: space-between;
 		gap: 12px;
+		min-width: 0;
 	}
 
 	.rail-brand {
-		width: auto;
+		width: clamp(120px, 40vw, 168px);
 		height: auto;
-		padding: 8px;
-		flex-shrink: 0;
+		padding: 0;
+		flex: 0 1 auto;
+		min-width: 0;
+	}
+
+	.rail-brand-mark {
+		width: 100%;
+		max-width: 100%;
+		padding-top: 0;
+	}
+
+	.rail-brand-mark img,
+	.theme-logo {
+		width: 100%;
+		max-width: 100%;
 	}
 
 	.rail-nav {
+		flex: 1 1 auto;
+		min-width: 0;
 		margin-top: 0;
 		flex-direction: row;
 		gap: 4px;
+		justify-content: center;
 	}
 
 	.theme-toggle-mobile {

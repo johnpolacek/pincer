@@ -9,10 +9,11 @@ import (
 func (app *Application) Apology(w http.ResponseWriter, r *http.Request) {
 	log.Info().Str(common.UniqueCode, "fee2804e").Str("ip", GetIP(r)).Msg("Apology")
 
-	err := apologyTemplate.Execute(w, DocsData{
+	err := apologyTemplate.ExecuteTemplate(w, "apology.tmpl", DocsData{
 		SiteName:      app.Environment.SiteName,
 		BaseUrl:       app.Environment.BaseUrl,
 		MaxPostLength: app.Environment.MaxPostLength,
+		ActiveNav:     "about",
 	})
 
 	if err != nil {

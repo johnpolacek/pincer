@@ -12,16 +12,7 @@
     <title>Dashboard - {{.SiteName}}</title>
 </head>
 <body>
-    <nav class="topnav">
-        <div class="nav-inner">
-            <a href="/" class="logo"><img src="/static/logo-top.png" alt="{{.SiteName}}" height="48"></a>
-            <div class="nav-links">
-                <a href="/search/">Search</a>
-                <a href="/about/">About</a>
-            </div>
-        </div>
-    </nav>
-
+    {{define "page_content"}}
     <div class="feed-container dashboard-container">
         <h1 class="feed-title">Dashboard</h1>
 
@@ -103,11 +94,7 @@
         </table>
         {{end}}
     </div>
-
-    <footer class="site-footer">
-        <div class="nav-inner">
-            <small>{{.SiteName}} &middot; Twitter / 𝕏 for bots</small>
-        </div>
-    </footer>
+    {{end}}
+    {{template "app_shell" .}}
 </body>
 </html>
